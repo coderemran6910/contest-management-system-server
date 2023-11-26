@@ -8,6 +8,10 @@ const contestsSchema = mongoose.Schema({
     price: {type : Number, required : true},
     prize: {type : Number, required : true},
     type: {type : String, required : true},
-})
+}) 
 
 module.exports = contestsSchema
+
+
+
+

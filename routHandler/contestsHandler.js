@@ -8,15 +8,24 @@ const Contest = new mongoose.model('Contest', contestsSchema);
 
 
 router.post('/', async(req, res) => {
-     const newContest = new Contest(req.body);
-     await newContest.save((err) => {
-         if(err){
-             res.status(500).json({message : err.message})
-         }else{
-             res.send(newContest)
-         }
-     });
-
+     try {
+        const newContest = new Contest(req.body);
+        await newContest.save();
+        res.send(newContest);
+        console.log('Data saved successfully');
+      } catch (error) {
+        console.error('Error saving data:', error);
+      }
 })
+
+router.get('/', async(req, res) => {
+    try {
+        const contests = await Contest.find();
+        res.send(contests);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+})
+
 
 module.exports = router
