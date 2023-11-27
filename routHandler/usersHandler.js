@@ -24,4 +24,17 @@ router.get('/', async(req, res) => {
       }
 })
 
+router.delete('/:email', async(req, res) => {
+  const email = req.params.email;
+  console.log(email);
+  try {
+    const user = await UserModel.findOneAndDelete(email);
+    console.log("user delete success");
+    res.send(user);
+  }
+  catch (error) {
+    console.error('Error fetching data:', error);
+  }
+})
+
 module.exports = router
