@@ -44,7 +44,13 @@ router.delete('/:email', async(req, res) => {
 // User role update 
 router.patch('/:email', async(req, res) => {
     const email = req.params.email;
+    const alreadyCreator = await UserModel.findOne({email : email, role : 'creator'});
     try{
+        if(alreadyCreator){
+            console.log("User already creator");
+            return
+        }
+
         const result = await UserModel.findOneAndUpdate(
             { email: email },
             { role: 'creator' },
