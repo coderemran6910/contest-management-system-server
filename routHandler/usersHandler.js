@@ -15,4 +15,13 @@ router.post('/', async(req, res) => {
       }
 }) 
 
+router.get('/', async(req, res) => {
+    try {
+        const users = await UserModel.find();
+        res.send(users);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+})
+
 module.exports = router
