@@ -12,7 +12,7 @@ router.post('/', async(req, res) => {
         const newContest = new Contest(req.body);
         await newContest.save();
         res.send(newContest);
-        console.log('Data saved successfully');
+        console.log('contest saved successfully');
       } catch (error) {
         console.error('Error saving data:', error);
       }
