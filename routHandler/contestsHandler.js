@@ -27,5 +27,16 @@ router.get('/', async(req, res) => {
       }
 })
 
+router.get('/:id', async(req, res) => {
+  const id = req.params.id;
+  try {
+    const contest = await Contest.findById(id);
+    res.send(contest);
+  }
+  catch (error) {
+    console.error('Error fetching data:', error);
+  }
+})
+
 
 module.exports = router
