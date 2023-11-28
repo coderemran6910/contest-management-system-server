@@ -62,5 +62,18 @@ router.patch('/:id', async(req, res) => {
 })
 
 
+router.delete('/:id', async(req, res) => {
+  const id = req.params.email;
+  try {
+    const  result = await Contest.findOneAndDelete(id);
+    console.log("Contest delete success");
+    res.send(result);
+  }
+  catch (error) {
+    console.error('Error fetching data:', error);
+  }
+})
+
+
 
 module.exports = router
