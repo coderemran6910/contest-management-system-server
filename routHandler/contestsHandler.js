@@ -39,4 +39,28 @@ router.get('/:id', async(req, res) => {
 })
 
 
+router.patch('/:id', async(req, res) => {
+  const id = req.params.id;
+  const alreadyConfirmed = await Contest.findOne({id : id, status : 'confirmed'});
+  try{
+      if(alreadyConfirmed){
+          console.log("User already confirmed");
+          return
+      }
+
+      const result = await Contest.findOneAndUpdate(
+          { _id: id },
+          { status: 'confirmed'},
+          { new: true }
+      )
+        console.log("User status confirmed");
+        res.send(result);
+  }
+  catch(error){
+      console.error('Error fetching data:', error);
+  }
+})
+
+
+
 module.exports = router

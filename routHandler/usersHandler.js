@@ -53,7 +53,7 @@ router.patch('/:email', async(req, res) => {
 
         const result = await UserModel.findOneAndUpdate(
             { email: email },
-            { role: 'creator' },
+            { role: 'creator'},
             { new: true }
           );
           console.log("User role update success", result);
